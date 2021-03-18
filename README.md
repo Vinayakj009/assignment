@@ -121,3 +121,7 @@ The only exception to environment variables in this case is that, you can use lo
 To start the server use the command.
 
 ```npm run start:node_with_env```
+
+## Testing the API
+The API can be tested using the postman collection ```assignment.postman_collection.json``` that had been added to the repo.
+I have not added test cases to the postman collection as I felt this was outside the scope of the assignment.

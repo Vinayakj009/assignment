@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "69c3afd6-815c-4334-8dd9-fe938e691dbd",
+		"name": "assignment",
+		"description": "This is an interview assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "random_string",
+						"value": "this is the random string required in the header",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"vinayakj009@gmail.com\",\n    \"password\":\"concreta\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/user",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "random_string",
+						"value": "this is the random string required in the header",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:8000/user?email=vinayakj009@gmail.com",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "vinayakj009@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
