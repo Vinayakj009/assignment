@@ -69,11 +69,15 @@ If you wish to use the mongodb provided by the docker-compose file, do not make 
 
 Next run the following command
 
-```docker-compose up -d```
+```docker-compose up```
 
 You can check if the containers are running as expected by running the comamnd
 
 ```docker container ls -a```
+
+You can stop the containers running on your system by running the following command.
+
+```docker-compose down```
 
 ### Running the server using a container.
 To run a single node instance using the container, first go to package.json and update the environment variables required for configuring the connection to the Mongo db. Use the instructions given in the header "Running the server using the docker-compose file." to understand what variables have to be set.
