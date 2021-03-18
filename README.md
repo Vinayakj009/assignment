@@ -27,3 +27,26 @@ This is the problem statement that was given to me.
    sample route "/users/:id"
 
 4. test cases using jest/mocha covering the functionality
+
+
+## Running using docker.
+### Pre-requisites
+1. Docker client version 19.03.8
+2. Docker server version 19.03.8
+
+### 1 time installation
+The following command will build the image required to run the container, and it will install all the requirements. The command builds an image with the node, npm and angular cli installed. The image is named assignment. You can change the name of the image if you want, but you will also have to change the name of the image in the run_in_container.sh file.
+
+```docker image build -t assignment:latest -f docker_images/node_image docker_images/```
+
+### Running commands via the contianer.
+Once the required image is built, you can run all the standard commands that you would normally use for node and angular, by prepending it with the words "./run_on_container.sh"
+For example, if you want to build a new angular project, run the command:
+
+```./run_in_container.sh ng new new_project```
+
+To get into the node terminal run the command
+
+```./run_in_container.sh node```
+
+**CAUTION**: The run_in_contianer maps the current folder into the container at the /code location. This means only this folder and it's contents are available to the container. Please do not try to access anything before the current folder.

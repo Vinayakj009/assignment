@@ -1,0 +1,9 @@
+FROM node
+RUN set -eux; \
+	apt-get update; \
+	apt-get upgrade -y; \
+  npm install -g @angular/cli;
+USER node
+VOLUME /code
+WORKDIR /code
+CMD ng serve
