@@ -1,5 +1,11 @@
 {
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.12.0",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start:node_with_env":"MONGO_USERNAME=root MONGO_PASSWORD=example MONGO_PORT=27017 MONGO_HOST=<mongo host ip> MONGO_DB_NAME=assignment RANDOM_STRING=\"random\" PORT=8002 nodemon API/server.js",
+    "start":"nodemon API/server.js"
   }
 }
