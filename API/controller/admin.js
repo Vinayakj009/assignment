@@ -42,7 +42,7 @@ exports.deleteUser = (req, res, next) => {
       if (result.deletedCount == 0) {
         throw "Email id does not exist"
       }
-      res.status(201).json({
+      res.status(204).json({
         message: "User deleted"
       })
     }).catch(err => {

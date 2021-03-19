@@ -16,15 +16,15 @@ This is the problem statement that was given to me.
 
 ### Part2: User and Tasks - APis
  
- -  One user can work on many tasks
+ -  One user can work on many tasks: Completed
 
-1. User login functionality with jwt authentication and token should be used while accessing subsequent apis 
+1. User login functionality with jwt authentication and token should be used while accessing subsequent apis : Completed
 
-2. get all users with pagination
-   - sample route "/users"
+2. get all users with pagination : Completed
+   - sample route "/users" (Query params: pagesize, currentpage)
 
-3. get single user along with his all tasks
-   sample route "/users/:id"
+3. get single user along with his all tasks : Completed with pagination
+   sample route "/users/:id" (Query params: pagesize, currentpage)
 
 4. test cases using jest/mocha covering the functionality
 

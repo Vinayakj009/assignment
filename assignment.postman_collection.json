@@ -68,7 +68,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"vinayakj009@gmail.com\",\n    \"password\":\"testTrial1234#a\"\n}",
+					"raw": "{\n    \"email\":\"{{email_id1}}\",\n    \"password\":\"{{testPassword1}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -103,12 +103,12 @@
 					{
 						"key": "authorization",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpbmF5YWtqMDA5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjYwNTQ4MTllODgyOGU3MDBkMDc2ZmRjNSIsImlhdCI6MTYxNjE1MTA1OCwiZXhwIjoxNjE2MTU0NjU4fQ.2AlyMKVKuDJi1X-0m8GuuG7MHcLtrjwZ3boDGKQgkOU"
+						"value": "{{jwt_token}}"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"vinayakj009@gmail.com\",\n    \"password\":\"testTrial1234#a\"\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,7 +116,7 @@
 					}
 				},
 				"url": {
-					"raw": "127.0.0.1:8000/users?pagesize=5&currentpage=1",
+					"raw": "127.0.0.1:8000/users?pagesize=1&currentpage=1",
 					"host": [
 						"127",
 						"0",
@@ -130,7 +130,105 @@
 					"query": [
 						{
 							"key": "pagesize",
-							"value": "5"
+							"value": "1"
+						},
+						{
+							"key": "currentpage",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"type": "text",
+						"value": "{{jwt_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/users?pagesize=1&currentpage=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "pagesize",
+							"value": "1"
+						},
+						{
+							"key": "currentpage",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"type": "text",
+						"value": "{{jwt_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/users?pagesize=1&currentpage=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "pagesize",
+							"value": "1"
 						},
 						{
 							"key": "currentpage",
