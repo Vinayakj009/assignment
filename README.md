@@ -65,7 +65,9 @@ If you wish to use the mongodb provided by the docker-compose file, do not make 
 3. MONGO_PORT: The port on which mongo db is running.
 4. MONGO_HOST: The ip address where mongo db is running. Do not use "localhost" or "127.0.0.1", as this will resolve to the container. You can use the host ip address on a network such as "192.168.0.105". This will work.
 5. MONGO_DB_NAME: The name of the database to which data has to be stored.
-6. RANDOM_STRING: This is the random string that was mentioned in the problem statement.
+6. AUTH_SECRET: This is the secret key used to encrypt user's password before it is stored on the database.
+7. JWT_SECRET: This is the secret key used to sign, encode and decode the json web token.
+8. RANDOM_STRING: This is the random string that was mentioned in the problem statement.
 
 Next run the following command
 
@@ -127,5 +129,5 @@ To start the server use the command.
 ```npm run start:node_with_env```
 
 ## Testing the API
-The API can be tested using the postman collection ```assignment.postman_collection.json``` that had been added to the repo.
+The API can be tested using the postman collection ```assignment.postman_collection.json``` that had been added to the repo. The repo also contains environment variables that have to be used for the tests. The environment variables are present in the ```assignment.postman_environment.json``` file.
 I have not added test cases to the postman collection as I felt this was outside the scope of the assignment.
