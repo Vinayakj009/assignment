@@ -21,7 +21,7 @@ exports.getTasks = (req, res, next)=>{
         .skip(pageSize*(currentPage-1))
         .limit(pageSize);
     }
-    return query.find().select({title:1, description: 1, user_id:1});
+    return query.find({user_id: userId}).select({title:1, description: 1, user_id:1});
   })
   .then( tasks =>{
     fetchedTasks = tasks;
