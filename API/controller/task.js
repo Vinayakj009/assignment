@@ -5,6 +5,7 @@ const User = require("../models/user")
 // Export the function to get user tasks.
 exports.getTasks = (req, res, next)=>{
   const userId = req.params.id;
+  let fetchedTasks;
   User.findById(userId)
   .then(user =>{
     if(!user){
@@ -15,7 +16,6 @@ exports.getTasks = (req, res, next)=>{
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.currentpage;
     const query = Task.find();
-    let fetchedTasks;
     if(pageSize && currentPage){
       query
         .skip(pageSize*(currentPage-1))
