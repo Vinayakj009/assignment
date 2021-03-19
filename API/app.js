@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 //Import routes
 const userRoutes = require("./routes/user");
+const amdinRoutes = require("./routes/admin");
 
 //Import middleware
 
@@ -15,7 +16,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use("/user", headerToken);
-app.use("/user", userRoutes);
+app.use("/user", amdinRoutes);
+app.use("/users", userRoutes);
 
 //Connect to MongoDB.
 //If you are running the app using docker, then update the docker-compose file with the required env variables.

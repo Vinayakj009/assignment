@@ -1,49 +1,74 @@
+// Import the required libraries
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 // Import the user model
 const User = require('../models/user');
 
-// Export controller function to create a user.
-exports.createUser = (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  if(!email || !password){
-    res.status(401).json({
-      message: "You did not supply valid email id or password"
+// Export function to allow a user to login
+exports.login = (req, res, next) => {
+  let fetched_user = null;
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({
+          message: "Wrong email id or password."
+        })
+      }
+      fetched_user = user;
+      return bcrypt.compare(req.body.password, user.password)
     })
-    return;
-  }
-  const user = new User({
-    email: email,
-    password: password
-  })
-  user.save()
     .then(result => {
-      res.status(201).json({
-        message: "User created"
-      })
-    }).catch(err => {
-      res.status(500).json({
-        message: "The email id has already been used"
-      })
-    });
+      if (!result) {
+        return res.status(401).json({
+          message: "Wrong email id or password."
+        });
+      }
+      const token = jwt.sign(
+        { email: fetched_user.email, userId: fetched_user._id },
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' });
+      return res.status(200).json({
+        message: "Authenticated",
+        jwt: token,
+        userId: fetched_user._id,
+        expiresIn: 3600
+      });
+    })
+    .catch(err => {
+      console.log(error);
+      return res.status(401).json({
+        message: "Wrong email id or password."
+      });
+    })
 }
 
-console.dir(exports.createUser)
-
-// Export controller function to delete a user
-exports.deleteUser = (req, res, next) => {
-  User.deleteOne({
-    email: req.query.email
+// Export the function to allow the user to get a list of users from the database
+exports.getUsers = (req, res, next) =>{
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.currentpage;
+  const query = User.find();
+  let fetchedUsers;
+  if(pageSize && currentPage){
+    query
+      .skip(pageSize*(currentPage-1))
+      .limit(pageSize);
+  }
+  query.find()
+  .then( documents =>{
+    fetchedUsers=documents
+    return User.count();
   })
-    .then(result => {
-      if(result.deletedCount == 0){
-        throw "Email id does not exist"
-      }
-      res.status(201).json({
-        message: "User deleted"
-      })
-    }).catch(err => {
-      res.status(500).json({
-        message: "The email id does not exist"
-      })
+  .then(count =>{
+    res.status(200).json({
+      message: "Users fetched successfully",
+      users : fetchedUsers,
+      totalUsers: count
     });
+  })
+  .catch(error=>{
+    res.status(500).json({
+      message: "Fetching users failed"
+    })
+  });
 }

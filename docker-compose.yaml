@@ -18,6 +18,8 @@ services:
       MONGO_PORT: 27017
       MONGO_HOST: mongo
       MONGO_DB_NAME: assignment
+      AUTH_SECRET: Used encrypting passwords
+      JWT_SECRET: Used for signing jwt tokens
       RANDOM_STRING: this is the random string required in the header
     command: npm run start
   mongo:
