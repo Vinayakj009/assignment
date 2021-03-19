@@ -44,31 +44,31 @@ exports.login = (req, res, next) => {
 }
 
 // Export the function to allow the user to get a list of users from the database
-exports.getUsers = (req, res, next) =>{
+exports.getUsers = (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.currentpage;
   const query = User.find();
   let fetchedUsers;
-  if(pageSize && currentPage){
+  if (pageSize && currentPage) {
     query
-      .skip(pageSize*(currentPage-1))
+      .skip(pageSize * (currentPage - 1))
       .limit(pageSize);
   }
-  query.find()
-  .then( documents =>{
-    fetchedUsers=documents
-    return User.count();
-  })
-  .then(count =>{
-    res.status(200).json({
-      message: "Users fetched successfully",
-      users : fetchedUsers,
-      totalUsers: count
-    });
-  })
-  .catch(error=>{
-    res.status(500).json({
-      message: "Fetching users failed"
+  query.find().select({email:1})
+    .then(documents => {
+      fetchedUsers = documents;
+      return User.count();
     })
-  });
+    .then(count => {
+      res.status(200).json({
+        message: "Users fetched successfully",
+        users: fetchedUsers,
+        totalUsers: count
+      });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching users failed"
+      })
+    });
 }

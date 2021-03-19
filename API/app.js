@@ -4,8 +4,9 @@ const mongoose = require('mongoose'); // I am using mongoose to connect to the M
 const bodyParser = require('body-parser');
 
 //Import routes
-const userRoutes = require("./routes/user");
 const amdinRoutes = require("./routes/admin");
+const userRoutes = require("./routes/user");
+const taskRoutes = require("./routes/task");
 
 //Import middleware
 
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use("/user", headerToken);
 app.use("/user", amdinRoutes);
 app.use("/users", userRoutes);
+app.use("/task", taskRoutes);
 
 //Connect to MongoDB.
 //If you are running the app using docker, then update the docker-compose file with the required env variables.
