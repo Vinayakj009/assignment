@@ -55,7 +55,7 @@
 
   Next run the following command to install the require nodejs packages.
 
-  ```run_in_container.sh npm install```
+  ```./run_in_container.sh npm install```
 
 ### Running commands via the contianer.
   Once the required image is built, you can run all the standard commands that you would normally use for node and angular, by prepending it with the words "./run_on_container.sh"
@@ -87,7 +87,7 @@
 ### Running the server using a container.
   Run the following command to tun the server via a single container.
 
-  ```run_in_container.sh npm run start```
+  ```./run_in_container.sh npm run start```
 
 
 ## Running without using docker.
@@ -133,11 +133,14 @@
 ## Testing the functionality using jest
 ### Using docker
   If you have started the containers using the docker-compose file, then to start the test, just run the following.
+  
   ```docker container exec -it $(basename $(pwd))_nodejs_1 npm run test```
 
   If you use the run_in_container.sh file to start the node server, then you can run the test using the following command.
+
   ```./run_in_container.sh npm run test```
 
 ### Without using docker
   If you have configured the .env file to point to the right mongo db, then you can run the functionality test using the following command
+
   ```npm run test```
