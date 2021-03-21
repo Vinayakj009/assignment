@@ -11,9 +11,7 @@ exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then(user => {
       if (!user) {
-        return res.status(401).json({
-          message: "Wrong email id or password."
-        })
+        throw "Wrong email id or password."
       }
       fetched_user = user;
       return bcrypt.compare(req.body.password, user.password)
@@ -36,7 +34,9 @@ exports.login = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(error);
+      if(err != "Wrong email id or password."){
+        console.log(err);
+      }
       return res.status(401).json({
         message: "Wrong email id or password."
       });

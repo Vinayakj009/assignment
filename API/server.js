@@ -1,5 +1,6 @@
 const http = require('http');
 const app = require('./app');
+const mongoose = require('mongoose'); // I am using mongoose to connect to the Mongo DB.
 const debug = require('debug')('node-angular');
 
 /* I have got most of this code from the course.
@@ -48,6 +49,17 @@ const onListening = () => {
   const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
   debug("Listening on " + bind);
 };
+
+
+//Connect to MongoDB.
+//If you are running the app using docker, then update the docker-compose file with the required env variables.
+//If you are running the app without using docker, then update the requried env variables in the package.json file.
+mongoose.connect("mongodb://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD + "@" + process.env.MONGO_HOST + ":" + process.env.MONGO_PORT + "/" + process.env.MONGO_DB_NAME + "?authSource=admin") // Adding authSource is required. You can change the name of the admin db for security, but mention it here.
+  .then(() => {
+    console.log("Connected to mongodb");
+  }).catch(() => {
+    console.log("Error: Cound not connect to mongodb");
+  })
 
 const port = normalizePort(process.env.PORT || 8000); //Normalise port function from before used to confirm the supplied port
 app.set('port', port);                                //Uses the port supplied by the environment, or defaults to 8000

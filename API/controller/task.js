@@ -55,7 +55,8 @@ exports.createTask = (req, res, next) =>{
   task.save()
   .then(result =>{
     res.status(201).json({
-      message: "Task successfully added"
+      message: "Task successfully added",
+      id: result._id
     })
   })
   .catch(error =>{
