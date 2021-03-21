@@ -14,12 +14,12 @@ services:
       - mongo
     env_file:
       - debug.env
-    command: npm run start
+    command: npm run test
   mongo:
     image: mongo
     restart: always
     volumes:
-      - ./volumes/mongoData/debug:/data/db
+      - ./volumes/mongoData:/data/db
     env_file:
       - debug.env
   mongo-express:
