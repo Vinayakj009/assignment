@@ -6,13 +6,15 @@ const User = require("../models/user")
 exports.getTasks = (req, res, next)=>{
   const userId = req.params.id;
   let fetchedTasks;
-  User.findById(userId)
+  let current_user;
+  User.findById(userId).select({email:1})
   .then(user =>{
     if(!user){
       return res.status(404).json({
         message: "Could not find a user with the given id"
       })
     }
+    current_user = user;
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.currentpage;
     const query = Task.find();
@@ -31,6 +33,7 @@ exports.getTasks = (req, res, next)=>{
     res.status(200).json({
       message: "Successfully fetched tasks",
       tasks: fetchedTasks,
+      user: current_user,
       taskCount: taskCount
     });
   })
