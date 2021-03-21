@@ -17,7 +17,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFiles":["./__tests__/utility/dotenv_require.js"],
+    "setupFiles": [
+      "./__tests__/utility/dotenv_require.js"
+    ],
     "modulePathIgnorePatterns": [
       "utility"
     ],

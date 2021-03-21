@@ -13,7 +13,7 @@ services:
     depends_on:
       - mongo
     env_file:
-      - debug.env
+      - ./.env
     command: npm run start
   mongo:
     image: mongo
@@ -21,11 +21,11 @@ services:
     volumes:
       - ./volumes/mongoData/debug:/data/db
     env_file:
-      - debug.env
+      - ./.env
   mongo-express:
     image: mongo-express
     ports:
       - 8081:8081
     restart: always
     env_file:
-      - debug.env
+      - ./.env
