@@ -57,7 +57,7 @@ exports.getUsers = (req, res, next) => {
   query.find().select({email:1})
     .then(documents => {
       fetchedUsers = documents;
-      return User.count();
+      return User.countDocuments();
     })
     .then(count => {
       res.status(200).json({

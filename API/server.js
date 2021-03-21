@@ -54,7 +54,8 @@ const onListening = () => {
 //Connect to MongoDB.
 //If you are running the app using docker, then update the docker-compose file with the required env variables.
 //If you are running the app without using docker, then update the requried env variables in the package.json file.
-mongoose.connect("mongodb://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD + "@" + process.env.MONGO_HOST + ":" + process.env.MONGO_PORT + "/" + process.env.MONGO_DB_NAME + "?authSource=admin") // Adding authSource is required. You can change the name of the admin db for security, but mention it here.
+mongoose.connect("mongodb://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD + "@" + process.env.MONGO_HOST + ":" + process.env.MONGO_PORT + "/" + process.env.MONGO_DB_NAME + "?authSource=admin",
+  { useNewUrlParser: true, useUnifiedTopology: true }) // Adding authSource is required. You can change the name of the admin db for security, but mention it here.
   .then(() => {
     console.log("Connected to mongodb");
   }).catch(() => {

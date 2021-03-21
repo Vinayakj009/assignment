@@ -30,7 +30,7 @@ async function dropAllCollections () {
 exports.setupDB = (db_name)=>{
   beforeAll(async () => {
     const url = "mongodb://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD + "@" + process.env.MONGO_HOST + ":" + process.env.MONGO_PORT + "/"+db_name+"?authSource=admin";
-    await mongoose.connect(url, { useNewUrlParser: true })
+    await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
   })
 
   afterAll(async () => {

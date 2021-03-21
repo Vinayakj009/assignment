@@ -27,7 +27,7 @@ exports.getTasks = (req, res, next)=>{
   })
   .then( tasks =>{
     fetchedTasks = tasks;
-    return Task.count({'user_id':userId});
+    return Task.countDocuments({'user_id':userId});
   })
   .then(taskCount =>{
     res.status(200).json({
